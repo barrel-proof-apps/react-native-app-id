@@ -2,6 +2,7 @@
 
 const newID = process.argv[2];
 const newName = process.argv[3];
+const target = process.argv[4];
 const _ = require('lodash');
 const fs = require('fs');
 
@@ -10,10 +11,18 @@ if (newID && newID.split('.').length <2) {
     return;
 }
 
-Promise.all([
-    require('./src/ios')(newID, newName),
-    require('./src/android')(newID, newName)
-])
+const promises = []
+
+if (target == "android" || target == "both") {
+    promise.push(require('./src/android')(newID, newName))
+}
+if (target == "ios" || target == "both") {
+    promise.push(require('./src/ios')(newID, newName))
+}
+
+
+
+Promise.all(promises)
     .then((items) => {
 
         const ios = items[0];
