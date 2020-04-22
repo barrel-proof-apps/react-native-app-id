@@ -14,10 +14,10 @@ if (newID && newID.split('.').length <2) {
 const promises = []
 
 if (target == "android" || target == "both") {
-    promise.push(require('./src/android')(newID, newName))
+    promises.push(require('./src/android')(newID, newName))
 }
 if (target == "ios" || target == "both") {
-    promise.push(require('./src/ios')(newID, newName))
+    promises.push(require('./src/ios')(newID, newName))
 }
 
 
